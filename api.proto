@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package api;
+
+service Todos {
+    rpc createTodo (TodoCreate) returns (RequestInfo) {}
+    rpc getTodos (TodosRequest) returns (TodosReply) {}
+    rpc deleteTodo (TodoRequest) returns (RequestInfo) {}
+    rpc putTodo (TodoPut) returns (RequestInfo) {}
+}
+
+message TodosRequest {
+    int32 page = 1;
+    int32 length = 2;
+}
+
+message TodosReply {
+    repeated TodoReply todos = 1;
+}
+
+message TodoPut {
+    string name = 1;
+    string description = 2;
+}
+
+message RequestInfo {
+    string message = 1;
+}
+
+message TodoCreate {
+    string name = 1;
+    string description = 2;
+}
+
+message TodoRequest {
+    string name = 1;
+}
+
+message TodoReply {
+    string name = 1;
+    string description = 2;
+}
